@@ -24,6 +24,7 @@ all: $(NAME)
 
 $(NAME):
 	@$(CC) $(CFLAGS) $(SRC) && ar rc $(NAME) $(OBJECT)
+	@ranlib $(NAME)
 
 clean:
 	@rm -f $(OBJECT)
