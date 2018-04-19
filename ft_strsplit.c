@@ -6,7 +6,7 @@
 /*   By: wawong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:45:53 by wawong            #+#    #+#             */
-/*   Updated: 2018/04/18 22:57:09 by wawong           ###   ########.fr       */
+/*   Updated: 2018/04/19 12:22:46 by wawong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,18 @@ static int	w_count(char const *s, char c)
 	set = 0;
 	if (!s || !c)
 		return (0);
+	while (*s == c)
+		s++;
 	while (*s)
 	{
 		if (*s == c && set == 0)
-			set = 1;
-		if (*s != c && set == 1)
 		{
 			set = 1;
+			num++;
+		}
+		if (*s != c && set == 1)
+		{
+			set = 0;
 			num++;
 		}
 		s++;
@@ -56,7 +61,7 @@ char		**ft_strsplit(char const *s, char c)
 	char	**array;
 
 	i = 0;
-	word = w_count(s, c) + 1;
+	word = w_count(s, c);
 	if (!(array = (char**)malloc(sizeof(*array) * (word + 1))))
 		return (NULL);
 	while (word)
