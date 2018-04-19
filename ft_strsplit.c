@@ -6,7 +6,7 @@
 /*   By: wawong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:45:53 by wawong            #+#    #+#             */
-/*   Updated: 2018/04/19 12:22:46 by wawong           ###   ########.fr       */
+/*   Updated: 2018/04/19 12:48:46 by wawong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,14 @@ static int	w_count(char const *s, char c)
 		s++;
 	while (*s)
 	{
-		if (*s == c && set == 0)
+		if ((*s == c && set == 0) || (*s != c && set == 1))
 		{
-			set = 1;
-			num++;
-		}
-		if (*s != c && set == 1)
-		{
-			set = 0;
+			set = ((set == 0) ? 1 : 0);
 			num++;
 		}
 		s++;
+		if (*s == '\0' && set == 0)
+			num++;
 	}
 	return (num);
 }
