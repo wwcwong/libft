@@ -56,7 +56,7 @@ char		**ft_strsplit(char const *s, char c)
 	char	**array;
 
 	i = 0;
-	word = w_count(s, c);
+	word = w_count(s, c) + 1;
 	if (!(array = (char**)malloc(sizeof(*array) * (word + 1))))
 		return (NULL);
 	while (word)
