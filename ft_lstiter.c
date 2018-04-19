@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wawong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/18 13:36:30 by wawong            #+#    #+#             */
-/*   Updated: 2018/04/19 00:00:49 by wawong           ###   ########.fr       */
+/*   Created: 2018/04/19 10:35:09 by wawong            #+#    #+#             */
+/*   Updated: 2018/04/19 10:40:47 by wawong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void				ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	size_t i;
-
-	i = 0;
-	while (n > 0)
+	if (lst && f)
 	{
-		if (((unsigned char*)src)[i] == (unsigned char)c)
+		while (lst)
 		{
-			((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
-			return (dst + i + 1);
+			f(lst);
+			lst = lst->next;
 		}
-		((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
-		i++;
-		n--;
 	}
-	return (NULL);
 }
